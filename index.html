@@ -22,7 +22,10 @@
                             <option value="" disabled selected>Select an employee</option>
                         </select>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="retailer" class="form-label">Retailer</label>
+                        <input type="text" id="retailer" class="form-control" required />
+                    </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" id="address" class="form-control" required />
@@ -78,7 +81,7 @@
         document.getElementById('userForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const status = document.getElementById('status');
-            status.innerHTML = '<div class="alert alert-info">Fetching location...</div>';
+            status.innerHTML = '<div class="alert alert-info">Submitting...</div>';
 
             if (!navigator.geolocation) {
                 status.innerHTML = '<div class="alert alert-danger">Geolocation not supported.</div>';
@@ -89,19 +92,21 @@
                 function (position) {
                     const name = document.getElementById('employeeSelect').value;
                     const address = document.getElementById('address').value;
+                    const retailer = document.getElementById('retailer').value;
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
 
                     db.collection("users").add({
                         name,
                         address,
+                        retailer,
                         location: {
                             lat,
                             lng
                         },
                         createdAt: new Date()
                     }).then(() => {
-                        status.innerHTML = '<div class="alert alert-success">Data saved to Firebase!</div>';
+                        status.innerHTML = '<div class="alert alert-success">Data saved!</div>';
                         document.getElementById('userForm').reset();
                     }).catch((error) => {
                         status.innerHTML = '<div class="alert alert-danger">Error: ' + error.message + '</div>';
