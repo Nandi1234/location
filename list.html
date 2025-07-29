@@ -108,7 +108,7 @@
                         const mapLink = lat && lng
                             ? `<a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" class="btn btn-sm btn-outline-primary">View</a>`
                             : "-";
-                        const phone = `<a href="tel:+${data.retailer_phone || ""}">${data.retailer_phone || ""}</a>`
+                        const phone = `<a href="tel:${data.retailer_phone || ""}">${data.retailer_phone || ""}</a>`
                         const row = `
               <tr>
                 <td>${i++}</td>
