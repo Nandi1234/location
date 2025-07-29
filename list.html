@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-5">
-        <h4 class="text-center mb-4">User Submissions</h4>
+        <h4 class="text-center mb-4" id="hdr">User Submissions</h4>
 
         <!-- 📅 Date Picker -->
         <div class="row mb-4 justify-content-center">
@@ -66,6 +66,11 @@
 
         // ✅ Fetch data for today by default
         window.onload = function () {
+            const password = prompt("Enter password:");
+            if (password !== "Bwn123@") {
+                document.getElementById("hdr").innerHTML = "Access denied!";
+                return false
+            }
             document.getElementById('filterDate').value = new Date().toISOString().split('T')[0];
             fetchData();
         };
