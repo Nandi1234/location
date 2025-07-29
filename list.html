@@ -30,6 +30,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Retailer</th>
+                        <th>Retailer Phone No</th>
                         <th>Address</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
@@ -107,12 +108,13 @@
                         const mapLink = lat && lng
                             ? `<a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" class="btn btn-sm btn-outline-primary">View</a>`
                             : "-";
-
+                        const phone = `<a href="tel:+${data.retailer_phone || ""}">${data.retailer_phone || ""}</a>`
                         const row = `
               <tr>
                 <td>${i++}</td>
                 <td>${data.name || ""}</td>
                 <td>${data.retailer || ""}</td>
+                <td>${phone}</td>
                 <td>${data.address || ""}</td>
                 <td>${lat?.toFixed(6) || "-"}</td>
                 <td>${lng?.toFixed(6) || "-"}</td>
